@@ -3,6 +3,8 @@
 function createGrid(numberofBoxes){
     const clearButton = document.querySelector('.clear')
     clearButton.addEventListener('click',()=>clearGrid())
+    const newGridButton = document.querySelector('.newGrid')
+    newGridButton.addEventListener('click',getUserInput)
     const container = document.querySelector('.gridContainer')
     let boxSize = (700/numberofBoxes) + "px"
     for (let rowNumber =0 ;rowNumber<numberofBoxes;rowNumber++){
@@ -32,6 +34,18 @@ function clearGrid (){
         box.style.backgroundColor = "lightgray"
     }    
 
+}
+function removeGrid(){
+    const gridContainer = document.querySelector(".gridContainer")
+    while (gridContainer.firstChild){
+        gridContainer.removeChild(gridContainer.firstChild)
+    }
+}
+
+function getUserInput(){
+    removeGrid()
+    let numberOfBoxes=parseInt(prompt("Number of Boxes in The New Grid"))
+    createGrid(numberOfBoxes)
 }
 
 createGrid(20)
